@@ -1,5 +1,7 @@
 # Diablo: Cataclysm Era
 
+> 仓库：<https://gitee.com/siwpan/diablo> ｜ 许可：MIT-0（MIT No Attribution）（见 [LICENSE](LICENSE)）
+
 一款暗黑破坏神风格的图形界面 RPG 游戏。
 
 ## 语言 / 类型
@@ -14,7 +16,7 @@
 - `test_game_fsm.py` —— 状态机测试
 
 ## 运行方式与依赖
-- 运行：`F:\Python314\python.exe main.py`
+- 运行：`python main.py`
 - 依赖：无（标准库 tkinter）
 
 ## 测试状态
