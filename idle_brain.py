@@ -3,7 +3,7 @@
 挂机战斗决策大脑（Idle Brain）
 ============================
 
-结合 ``D:/allin/tools/zhuangtaiji`` 的**行为树（Behavior Tree）**引擎，
+结合 ``<zhuangtaiji 仓根>/core`` 的**行为树（Behavior Tree）**引擎，
 把原来"无脑平A"的挂机战斗换成有策略的决策：
 
     Selector(按优先级选第一个成立的)
@@ -23,9 +23,22 @@ import sys
 
 # ---- 接入 zhuangtaiji 的行为树内核（纯标准库，无第三方依赖）----
 # 直接挂载其 core 目录并导入独立模块，避免触发整包 __init__，保持零耦合。
-_ZT_CORE = os.environ.get("DIABLO_ZHUANGTAIJI_CORE") \
-    or r"D:\allin\tools\zhuangtaiji\core"
-if os.path.isdir(_ZT_CORE) and _ZT_CORE not in sys.path:
+# 2026-09-28 去本地化：core 目录改为按「环境变量 → 仓内推导」候选列表解析，
+# 不再使用已失效的本机绝对路径（原 D:\allin\tools\zhuangtaiji\core 已不存在）。
+# 候选优先级：
+#   1) DIABLO_ZHUANGTAIJI_CORE —— 仓内既有变量名，直接指向 core 目录
+#   2) ZHUANGTAIJI_ROOT        —— zhuangtaiji 仓根，取其下 core/
+#   3) 仓内推导                 —— 与本仓同级的 zhuangtaiji 仓下 core/
+_ZT_CORE_CANDIDATES = [
+    os.environ.get("DIABLO_ZHUANGTAIJI_CORE", ""),
+    (os.path.join(os.environ["ZHUANGTAIJI_ROOT"], "core")
+     if os.environ.get("ZHUANGTAIJI_ROOT") else ""),
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                 "zhuangtaiji", "core"),
+]
+# 取第一个真实存在的候选；一个都不存在则为空串，保持「引擎缺失即降级为纯普攻」的原语义
+_ZT_CORE = next((c for c in _ZT_CORE_CANDIDATES if c and os.path.isdir(c)), "")
+if _ZT_CORE and _ZT_CORE not in sys.path:
     sys.path.insert(0, _ZT_CORE)
 
 try:
@@ -53,7 +66,9 @@ class IdleBrain:
         self.blackboard = Blackboard() if self.enabled else None
         self.tree = self._build() if self.enabled else None
         if not self.enabled:
-            print("提示：未找到 zhuangtaiji 行为树引擎，挂机战斗降级为纯普攻。")
+            print("提示：未找到 zhuangtaiji 行为树引擎，挂机战斗降级为纯普攻。"
+                  "可用 DIABLO_ZHUANGTAIJI_CORE 指定其 core 目录，"
+                  "或用 ZHUANGTAIJI_ROOT 指定 zhuangtaiji 仓根。")
 
     # ---------- 行为树构造 ----------
     def _build(self) -> "BehaviorTree":
