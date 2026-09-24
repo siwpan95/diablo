@@ -24,7 +24,7 @@ import sys
 # ---- 接入 zhuangtaiji 的行为树内核（纯标准库，无第三方依赖）----
 # 直接挂载其 core 目录并导入独立模块，避免触发整包 __init__，保持零耦合。
 # 2026-09-23 去本地化：core 目录改为按「环境变量 → 仓内推导」候选列表解析，
-# 不再使用已失效的本机绝对路径（原 D:\allin\tools\zhuangtaiji\core 已不存在）。
+# 不再使用已失效的本机绝对路径（原路径已不存在）。
 # 候选优先级：
 #   1) DIABLO_ZHUANGTAIJI_CORE —— 仓内既有变量名，直接指向 core 目录
 #   2) ZHUANGTAIJI_ROOT        —— zhuangtaiji 仓根，取其下 core/

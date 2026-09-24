@@ -16,7 +16,7 @@
     - ``current_state``         当前界面状态
     - ``history``               转移轨迹
 * 状态机代码来自 ``<zhuangtaiji 仓根>/core``（2026-09-23 去本地化：原
-  ``D:/allin/tools/zhuangtaiji/core`` 已不存在），按"复制即复用"原则
+  ``原路径`` 已不存在），按"复制即复用"原则
   内联到本项目 ``statemachine/`` 包，与源项目零耦合、零外部引用。
 
 状态图（单一数据源 ``GAME_FSM_CONFIG``）
