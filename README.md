@@ -1,5 +1,7 @@
-> 📦 **已归档（Tier ③ 收敛合并）** — 本仓已迁入归档仓 `game-prototypes`，完整 git 历史保留在 `archive/diablo` 分支。
-> **原仓冻结、不再开发**；活跃维护请前往归档仓，本仓仅作历史参考。
+> 📦 **已归档（Archived — 仅作参考）**
+> 本仓库已收入归档仓 **game-prototypes**（代码与完整 git 历史一并迁入，原仓冻结不再开发）。
+> 历史分支见归档仓的 `archive/diablo` 分支；活跃维护请前往 **game-prototypes**。
+> _This repo is archived into game-prototypes; development continues there. Do not commit here._
 
 # Diablo: Cataclysm Era
 
