@@ -1,3 +1,6 @@
+> 📦 **已归档（Tier ③ 收敛合并）** — 本仓已迁入归档仓 `game-prototypes`，完整 git 历史保留在 `archive/diablo` 分支。
+> **原仓冻结、不再开发**；活跃维护请前往归档仓，本仓仅作历史参考。
+
 # Diablo: Cataclysm Era
 
 > 仓库：<https://gitee.com/siwpan/diablo> ｜ 许可：MIT-0（MIT No Attribution）（见 [LICENSE](LICENSE)）
